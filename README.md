@@ -15,4 +15,5 @@ otus-mlops/
 * Задачи на доске в проекте https://github.com/users/tenderfire/projects/1/views/1
 
 ### hw_02
-Решение в рамках задачи и ее подзадач https://github.com/tenderfire/otus-mlops/issues/1
+* Конфигурация инфраструктуры и скрипты в `infra/`
+* Решение и подробности в рамках задачи и ее подзадач https://github.com/tenderfire/otus-mlops/issues/1
