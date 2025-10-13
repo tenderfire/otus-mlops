@@ -12,3 +12,6 @@ apply:
 
 destroy:
 	terraform destroy -auto-approve
+
+compute-destroy:
+	terraform destroy -target yandex_dataproc_cluster.dataproc_cluster -target yandex_compute_instance.proxy -auto-approve
