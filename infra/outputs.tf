@@ -6,3 +6,11 @@ output "proxy_public_ip" {
 output "bucket_name" {
   value = yandex_storage_bucket.data_bucket.bucket
 }
+
+output "dataproc_cluster_id" {
+  value = yandex_dataproc_cluster.dataproc_cluster.id
+}
+
+output "proxy_vm_id" {
+  value = yandex_compute_instance.proxy.id
+}
