@@ -107,11 +107,13 @@ variable "dataproc_compute_resources" {
     resource_preset_id = string
     disk_type_id       = string
     disk_size          = number
+    hosts_count        = number
   })
   default = {
     resource_preset_id = "s3-c4-m16"
     disk_type_id       = "network-ssd"
     disk_size          = 50
+    hosts_count        = 1
   }
 }
 

@@ -109,18 +109,18 @@ chmod 600 /home/ubuntu/.s3cfg
 TARGET_BUCKET=${s3_bucket}
 
 # Синхронизируем все данные из исходного бакета в целевой бакет
-log "Syncing data from source bucket to destination bucket"
-if s3cmd sync \
-    --config=/home/ubuntu/.s3cfg \
-    --acl-public \
-    s3://otus-mlops-source-data/ \
-    s3://$TARGET_BUCKET/; then
-    log "Data successfully synced to $TARGET_BUCKET"
-    log "Listing contents of $TARGET_BUCKET"
-    s3cmd ls --config=/home/ubuntu/.s3cfg s3://$TARGET_BUCKET/
-else
-    log "Error occurred while syncing data to $TARGET_BUCKET"
-fi
+# log "Syncing data from source bucket to destination bucket"
+# if s3cmd sync \
+#     --config=/home/ubuntu/.s3cfg \
+#     --acl-public \
+#     s3://otus-mlops-source-data/ \
+#     s3://$TARGET_BUCKET/; then
+#     log "Data successfully synced to $TARGET_BUCKET"
+#     log "Listing contents of $TARGET_BUCKET"
+#     s3cmd ls --config=/home/ubuntu/.s3cfg s3://$TARGET_BUCKET/
+# else
+#     log "Error occurred while syncing data to $TARGET_BUCKET"
+# fi
 
 # Создаем директорию для скриптов на прокси-машине
 log "Creating scripts directory on proxy machine"
@@ -157,19 +157,17 @@ ssh -i /home/ubuntu/.ssh/dataproc_key -o StrictHostKeyChecking=no ubuntu@$DATAPR
 log "Script upload_data_to_hdfs.sh has been copied to the master node"
 
 # Запускаем скрипт upload_data_to_hdfs.sh на мастер-ноде
-log "Executing upload_data_to_hdfs.sh script on master node"
-ssh -i /home/ubuntu/.ssh/dataproc_key -o StrictHostKeyChecking=no ubuntu@$DATAPROC_MASTER_FQDN "bash /home/ubuntu/upload_data_to_hdfs.sh"
-if [ $? -eq 0 ]; then
-    log "upload_data_to_hdfs.sh executed successfully on master node"
-else
-    log "Error occurred while executing upload_data_to_hdfs.sh on master node"
-    exit 1
-fi 
-
-log "Script upload_data_to_hdfs.sh executed on master node successfully"
+# log "Executing upload_data_to_hdfs.sh script on master node"
+# ssh -i /home/ubuntu/.ssh/dataproc_key -o StrictHostKeyChecking=no ubuntu@$DATAPROC_MASTER_FQDN "bash /home/ubuntu/upload_data_to_hdfs.sh 2022-11-04.txt"
+# REMOTE_EXIT_CODE=$?
+# if [ $REMOTE_EXIT_CODE -eq 0 ]; then
+#     log "upload_data_to_hdfs.sh executed successfully on master node"
+# else
+#     exit 1
+# fi 
 
 # Изменяем владельца лог-файла
 log "Changing ownership of log file"
 sudo chown ubuntu:ubuntu /home/ubuntu/user_data_execution.log
 
-log "User data script execution completed"
+log "User data script execution completed successfully"
