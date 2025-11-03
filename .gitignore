@@ -39,3 +39,5 @@
 **/.terraform.lock.hcl
 
 **/*.tfvars
+
+**/*workspace
